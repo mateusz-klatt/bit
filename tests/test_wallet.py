@@ -15,6 +15,7 @@ from bit.wallet import BaseKey, Key, PrivateKey, PrivateKeyTestnet, MultiSig, Mu
 from bit.utils import bytes_to_hex
 from .samples import (
     BITCOIN_ADDRESS,
+    BITCOIN_ADDRESS_COMPRESSED,
     BITCOIN_ADDRESS_TEST,
     BITCOIN_ADDRESS_P2SH_MULTISIG,
     BITCOIN_ADDRESS_NP2SH_MULTISIG,
@@ -41,6 +42,8 @@ from .samples import (
     WALLET_FORMAT_TEST_1,
     WALLET_FORMAT_TEST_2,
     BITCOIN_ADDRESS_NP2WKH,
+    BITCOIN_ADDRESS_SEGWIT,
+    BITCOIN_ADDRESS_TAPROOT,
     BITCOIN_ADDRESS_TEST_NP2WKH,
 )
 
@@ -246,6 +249,7 @@ class TestPrivateKey:
 
     def test_segwit_address(self):
         private_key = PrivateKey(WALLET_FORMAT_COMPRESSED_MAIN)
+        assert private_key.address == BITCOIN_ADDRESS_COMPRESSED
         assert private_key.segwit_address == BITCOIN_ADDRESS_NP2WKH
 
     def test_to_wif(self):
